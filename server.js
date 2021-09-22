@@ -68,7 +68,7 @@ app.post('/message/send', (req, res) => {
     `
     const options = {
         'method': 'POST',
-        'url': `https://http-api.d7networks.com/send?username=zrrv5537&password=eBfqofQX&dlr-method=POST&dlr-url=https://4ba60af1.ngrok.io/receive&dlr=yes&dlr-level=3&from=smsinfo&content=${encodeURI(message)}&to=+234${phone}`,
+        'url': `https://http-api.d7networks.com/send?username=zrrv5537&password=eBfqofQX&dlr-method=POST&dlr-url=https://4ba60af1.ngrok.io/receive&dlr=yes&dlr-level=3&from=Abia IRS&content=${encodeURI(message)}&to=+234${phone}`,
         'headers': {
 
         }
