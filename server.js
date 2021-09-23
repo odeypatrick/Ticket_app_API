@@ -1,57 +1,10 @@
-// const http = require("https");
-
-// const options = {
-// 	"method": "POST",
-// 	"hostname": "nexmo-nexmo-sms-verify-v1.p.rapidapi.com",
-// 	"port": null,
-// 	"path": "/send-verification-code?brand=AbiaIRS&phoneNumber=%2B2349033889352",
-// 	"headers": {
-// 		"x-rapidapi-host": "nexmo-nexmo-sms-verify-v1.p.rapidapi.com",
-// 		"x-rapidapi-key": "a4c56c3f2cmshf39d03c52b4a100p11f304jsna42e940fd7b0",
-// 		"useQueryString": true
-// 	}
-// };
-
-// const req = http.request(options, function (res) {
-// 	const chunks = [];
-
-// 	res.on("data", function (chunk) {
-// 		chunks.push(chunk);
-// 	});
-
-// 	res.on("end", function () {
-// 		const body = Buffer.concat(chunks);
-// 		console.log(body.toString());
-// 	});
-// });
-
-// req.end();
-
-
-// var axios = require("axios").default;
-
-// var options = {
-//   method: 'POST',
-//   url: 'https://nexmo-nexmo-sms-verify-v1.p.rapidapi.com/send-verification-code',
-//   params: {brand: 'AbiaIRS', phoneNumber: '+2349033889352'},
-//   headers: {
-//     'x-rapidapi-host': 'nexmo-nexmo-sms-verify-v1.p.rapidapi.com',
-//     'x-rapidapi-key': 'a4c56c3f2cmshf39d03c52b4a100p11f304jsna42e940fd7b0'
-//   }
-// };
-
-// axios.request(options).then(function (response) {
-// 	console.log(response.data);
-// }).catch(function (error) {
-// 	console.error(error);
-// });
-
 const express = require('express')
 const app = express();
 var request = require('request')
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send("We are live")
