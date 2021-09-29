@@ -32,7 +32,7 @@ app.post('/message/send', (req, res) => {
         if (error) {
             return res.status(500).json({ success: false, msg: error })
         }
-        res.status(200).json({ success: true, response: { text: "SMS sent successfully", id: response.body } })
+        res.status(200).json({ success: true, response: { text: "SMS sent successfully.", id: response.body } })
     })
 })
 
