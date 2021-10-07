@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 var bcrypt = require('bcrypt')
 
-const userSchema = new mongoose.schema({
+const userSchema = new mongoose.Schema({
     username: String,
     email: String,
     phone: String,
@@ -9,7 +9,7 @@ const userSchema = new mongoose.schema({
     password: String, 
     sales: [
         {
-            type: mongoose.schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: "Sale"
         }
     ]
