@@ -5,7 +5,7 @@ const request = require('request')
 
 const app = express();
 
-app.use(morgan)
+app.use("combined", morgan)
 // initialize cors
 app.use(cors())
 app.use(express.json())
