@@ -50,7 +50,7 @@ router.get('/user/:id/sales', getSingleSale)
 // Get single Sale
 router.get('/sales/:id', getOneSale)
 
-//Add report
+//Add Sale
 router.post('/sales/add', addSales)
 
 //Get User Information
