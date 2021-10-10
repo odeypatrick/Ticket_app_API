@@ -16,9 +16,21 @@ router.get('/', (req, res) => {
     res.send("HELLO!! WE ARE LIVE - I am Tickets app api")
 })
 
+// router.get('/users', (req, res) => {
+//     User.find({})
+//     .then((users) => res.json({users}))
+//     .catch((err) => res.status(500).json({err}))
+// })
+
 router.get('/users', (req, res) => {
-    User.find({})
-    .then((users) => res.json({users}))
+    User.find({ }).populate("sales").exec()
+    .then((users) => {
+        const usersArray = [];
+        users.forEach(user => {
+            usersArray.push({ user, totalSales: user.sales.length })
+        })
+        res.status(200).json(usersArray)
+    })
     .catch((err) => res.status(500).json({err}))
 })
 
