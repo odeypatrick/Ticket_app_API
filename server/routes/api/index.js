@@ -45,7 +45,7 @@ router.post('/login', login)
 router.get('/sales', getAllSales)
 
 // Get user Sales
-router.get('/user/:id/sales', getSingleSale)
+router.get('/user/:vendorId/sales', getSingleSale)
 
 // Get single Sale
 router.get('/sales/:id', getOneSale)
