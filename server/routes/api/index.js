@@ -27,7 +27,19 @@ router.get('/users', (req, res) => {
     .then((users) => {
         const usersArray = [];
         users.forEach(user => {
-            usersArray.push({ user, totalSales: user.sales.length })
+            const todaySales = user.sales.filter(sale => {
+                const today = new Date();
+                const saleDate = new Date(sale.createdAt);
+                return saleDate.getDate() == today.getDate() && saleDate.getMonth() + 1 == today.getMonth() + 1 &&
+                saleDate.getFullYear() == today.getFullYear()
+            })
+            const monthlySales = user.sales.filter(sale => {
+                const today = new Date();
+                const saleDate = new Date(sale.createdAt);
+                return saleDate.getMonth() + 1 == today.getMonth() + 1 &&
+                saleDate.getFullYear() == today.getFullYear()
+            })
+            usersArray.push({ user, totalSales: user.sales.length, salesForTheMonth: monthlySales.length, salesForTheDay: todaySales.length })
         })
         res.status(200).json(usersArray)
     })
