@@ -66,3 +66,7 @@ exports.getOneSale = (req, res) => {
         return res.status(500).json({ error: err })
     })
 }
+
+// var today = new Date();
+// var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+// console.log(date)
