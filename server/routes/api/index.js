@@ -4,6 +4,7 @@ const { signup, login, getUserData, getSingleUserData, getAllUsersData } = requi
 const { addSales, getSingleSale, getAllSales, getOneSale } = require('./controllers/sales')
 const { url } = require('./url/url') 
 const User = require('./models/user')
+const Sale = require('./models/sales')
 
 mongoose.connect(url, {
     useNewUrlParser: true,
@@ -15,12 +16,6 @@ mongoose.connect(url, {
 router.get('/', (req, res) => {
     res.send("HELLO!! WE ARE LIVE - I am Tickets app api")
 })
-
-// router.get('/users', (req, res) => {
-//     User.find({})
-//     .then((users) => res.json({users}))
-//     .catch((err) => res.status(500).json({err}))
-// })
 
 router.get('/users', (req, res) => {
     User.find({ }).populate("sales").exec()
@@ -41,13 +36,13 @@ router.get('/users', (req, res) => {
             })
             usersArray.push({ user, totalSales: user.sales.length, salesForTheMonth: monthlySales.length, salesForTheDay: todaySales.length })
         })
-        res.status(200).json(usersArray)
+        res.status(200).json({ users: usersArray })
     })
     .catch((err) => res.status(500).json({err}))
 })
 
 
-//Signup - can be accessed by only an admin
+//Signup -
 router.post('/signup', signup)
 
 //login user
@@ -62,11 +57,18 @@ router.get('/user/:vendorId/sales', getSingleSale)
 // Get single Sale
 router.get('/sales/:id', getOneSale)
 
-//Add Sale
+//Add report
 router.post('/sales/add', addSales)
 
 //Get User Information
 router.get('/user', getUserData)
+
+// GET the amount of sales in the DB
+router.get('/total/sales', (req, res) => {
+    Sale.find({})
+    .then(sales => res.status(200).json({ totalSales: sales.length })) 
+})
+
 
 
 module.exports = router
